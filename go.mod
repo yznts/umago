@@ -1,3 +1,3 @@
-module github.com/yuriizinets/umami-go-middleware
+module github.com/yuriizinets/umami-go
 
 go 1.20
