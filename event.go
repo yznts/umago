@@ -8,7 +8,7 @@ import (
 type Event struct {
 	Hostname string `json:"hostname"`
 	Language string `json:"language"`
-	Referrer string `json:"referrer"`
+	Referer  string `json:"referrer"`
 	Screen   string `json:"screen"`
 	Title    string `json:"title"`
 	Url      string `json:"url"`
@@ -29,7 +29,7 @@ func NewEventFromHttpRequest(r *http.Request) Event {
 	return Event{
 		Hostname: r.Host,
 		Language: language,
-		Referrer: r.Referer(),
+		Referer:  r.Referer(),
 		Url:      r.URL.String(),
 	}
 }
