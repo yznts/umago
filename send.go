@@ -7,13 +7,15 @@ import (
 	"net/http"
 )
 
+// Send is a function to send an event to Umami
+// with a given configuration and client.
 func Send(conf Configuration, client Client, event Event) error {
 	// Set event website if missing
 	if event.Website == "" {
 		event.Website = conf.Website
 	}
-	// Serialize event
-	_event, err := json.Marshal(map[string]any{
+	// Serialize and pack event
+	eventPkg, err := json.Marshal(map[string]any{
 		"type":    "event",
 		"payload": event,
 	})
@@ -21,7 +23,7 @@ func Send(conf Configuration, client Client, event Event) error {
 		return fmt.Errorf("event serialization failed: %s", err.Error())
 	}
 	// Compose request
-	req, err := http.NewRequest("POST", conf.Href+"/api/send", bytes.NewReader(_event))
+	req, err := http.NewRequest("POST", conf.Href+"/api/send", bytes.NewReader(eventPkg))
 	if err != nil {
 		return fmt.Errorf("request composition failed: %s", err.Error())
 	}
