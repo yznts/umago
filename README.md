@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img width="200" src="LOGO.jpg" />
+    <img width="200" src="LOGO.png" />
 </p>
 
 <h1 align="center">umami-go</h1>
