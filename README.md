@@ -38,17 +38,17 @@ package main
 import (
 	"net/http"
 
-	"github.com/yuriizinets/umami-go"
+	"github.com/yuriizinets/umago"
 )
 
 var (
 	// Define umami configuration
-	umamiConfiguration = umami.Configuration{
+	umamiConfiguration = umago.Configuration{
 		Href:    "https://umami.foo.bar", // Provide your Umami instance url here
 		Website: "test",                  // Provide your website id here
 	}
 	// Initialize umami middleware
-	umamiMiddleware = umami.NewMiddleware(umamiConfiguration)
+	umamiMiddleware = umago.NewMiddleware(umamiConfiguration)
 )
 
 // PageToTrack is a simple page handler that we want to track.
@@ -77,17 +77,17 @@ package umami_test
 import (
 	"net/http"
 
-	"github.com/yuriizinets/umami-go"
+	"github.com/yuriizinets/umago"
 )
 
 var (
 	// Define umami configuration
-	umamiConfiguration = umami.Configuration{
+	umamiConfiguration = umago.Configuration{
 		Href:    "https://umami.foo.bar", // Provide your Umami instance url here
 		Website: "test",                  // Provide your website id here
 	}
 	// Initialize umami handler
-	umamiHandler = umami.NewHandler(umamiConfiguration)
+	umamiHandler = umago.NewHandler(umamiConfiguration)
 )
 
 // page is a simple page handler that we want to track.
