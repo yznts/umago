@@ -3,14 +3,14 @@
     <img width="200" src="LOGO.png" />
 </p>
 
-<h1 align="center">umami-go</h1>
+<h1 align="center">umago</h1>
 
 <p align="center">
     Umami tracking inside of your Go application.
 </p>
 
 ```go
-import "github.com/yuriizinets/umami-go"
+import "github.com/yuriizinets/umago"
 ```
 
 This library allows to track events into [Umami](https://umami.is) inside of your Go application.
