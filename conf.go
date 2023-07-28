@@ -1,4 +1,4 @@
-package umami
+package umago
 
 // Configuration holds Umami options,
 // like instance URL and website ID.

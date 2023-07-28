@@ -1,4 +1,4 @@
-package umami
+package umago
 
 import (
 	"encoding/base64"
@@ -16,7 +16,6 @@ var (
 // Main purpose of this handler is to avoid including Umami client-side tracker.
 // It can be used in multiple ways:
 //   - you can send a plain event info with JS fetch (POST request with {"n": "name", "t": "title", "r": "referrer"})
-//   - tracking empty script reference (f.e. <script src="/tracking/endpoint.js?r=referrer&t=title">)
 //   - tracking pixel reference (f.e. <img src="/tracking/endpoint.png?r=referrer&t=title">)
 func NewHandler(c Configuration) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -35,9 +34,8 @@ func NewHandler(c Configuration) http.HandlerFunc {
 				return
 			}
 			break
-		// GET request with js/png extension means we're receiving data in query string
+		// GET request with png extension means we're receiving data in query string
 		case r.Method == http.MethodGet &&
-			strings.HasSuffix(r.URL.Path, ".js") ||
 			strings.HasSuffix(r.URL.Path, ".png"):
 			// Set data from query string
 			data.Name = r.URL.Query().Get("n")
@@ -66,11 +64,6 @@ func NewHandler(c Configuration) http.HandlerFunc {
 		switch {
 		// We're not responding to POST requests
 		case r.Method == http.MethodPost:
-			break
-		// GET request with js extension means we're returning an empty JS file
-		case r.Method == http.MethodGet && strings.HasSuffix(r.URL.Path, ".js"):
-			w.Header().Set("Content-Type", "application/javascript")
-			w.Write([]byte{})
 			break
 		// GET request with png extension means we're returning an pixel image
 		case r.Method == http.MethodGet && (strings.HasSuffix(r.URL.Path, ".png")):

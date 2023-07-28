@@ -1,4 +1,4 @@
-package umami
+package umago
 
 import (
 	"log"
