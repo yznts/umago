@@ -1,3 +1,3 @@
-module github.com/yuriizinets/umami-go
+module github.com/yuriizinets/umago
 
 go 1.20
