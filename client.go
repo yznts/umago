@@ -5,11 +5,14 @@ import (
 	"strings"
 )
 
+// Client represents gathered client information
 type Client struct {
 	IP        string
 	UserAgent string
 }
 
+// NewClientFromHttpRequest allows to determine client parameters,
+// based on provided request.
 func NewClientFromHttpRequest(r *http.Request) Client {
 	// Resolve ip
 	ip := r.RemoteAddr

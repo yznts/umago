@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// Event represents Umami tracking event
 type Event struct {
 	Hostname string `json:"hostname"`
 	Language string `json:"language"`
@@ -16,6 +17,8 @@ type Event struct {
 	Name     string `json:"name"`
 }
 
+// NewEventFromHttpRequest allows to gather event information,
+// based on provided request.
 func NewEventFromHttpRequest(r *http.Request) Event {
 	// Resolve language
 	language := r.Header.Get("Accept-Language")
