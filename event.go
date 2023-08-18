@@ -2,6 +2,7 @@ package umago
 
 import (
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -28,9 +29,11 @@ func NewEventFromHttpRequest(r *http.Request) Event {
 	if language != "" {
 		language = strings.Split(language, ",")[0]
 	}
+	// Resolve host
+	host := url.URL{Host: r.Host}
 	// Compose event
 	return Event{
-		Hostname: r.Host,
+		Hostname: host.Hostname(),
 		Language: language,
 		Referer:  r.Referer(),
 		Url:      r.URL.String(),

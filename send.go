@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 )
 
@@ -33,15 +34,20 @@ func Send(conf Configuration, client Client, event Event) error {
 	req.Header.Set("X-Client-IP", client.IP)
 	// Send request
 	res, err := http.DefaultClient.Do(req)
+	// Check error
 	if err != nil {
 		return fmt.Errorf("request failed: %s", err.Error())
 	}
-	if err := res.Body.Close(); err != nil {
-		return fmt.Errorf("request failed: %s", err.Error())
-	}
-	// Check response
+	// Ensure body close
+	defer res.Body.Close()
+	// Check status
 	if res.StatusCode != 200 {
-		return fmt.Errorf("request failed: %s", res.Status)
+		// Compose error with details
+		body, _ := io.ReadAll(res.Body)
+		return fmt.Errorf(`request failed: %s
+			pkg: %s
+			res: %s`,
+			res.Status, string(eventPkg), string(body))
 	}
 	// Done
 	return nil
