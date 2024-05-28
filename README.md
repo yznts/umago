@@ -10,7 +10,7 @@
 </p>
 
 ```go
-import "github.com/yuriizinets/umago"
+import "github.com/yznts/umago"
 ```
 
 This library allows to track events into [Umami](https://umami.is) inside of your Go application.
@@ -38,7 +38,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/yuriizinets/umago"
+	"github.com/yznts/umago"
 )
 
 var (
@@ -77,7 +77,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/yuriizinets/umago"
+	"github.com/yznts/umago"
 )
 
 var (
@@ -166,7 +166,7 @@ Even track CLI tool usage, for example.
 package main
 
 import (
-	"github.com/yuriizinets/umago"
+	"github.com/yznts/umago"
 	"github.com/kyoto-framework/zen/v3/httpx"
 )
 
